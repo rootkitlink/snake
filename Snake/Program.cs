@@ -38,8 +38,22 @@ namespace Snake
             Snake snake = new Snake(p, 4, Direction.RIGHT);
             snake.LineDraw();
 
+            FoodCreator foodCreator = new FoodCreator(120, 30, '+');
+            Point food = foodCreator.CreateFood();
+            food.Draw();
+
             while (true)
             {
+                if (snake.Eat(food))
+                {
+                    food = foodCreator.CreateFood();
+                    food.Draw();
+                }
+                else
+                {
+                    snake.Move();
+                }
+
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey();
