@@ -12,37 +12,34 @@ namespace Snake
         static void Main(string[] args)
         {
 
-            Console.SetBufferSize(120, 30);
+            Console.SetBufferSize(125, 30);
 
-            //отрисовка рамочки
-            //HorizontalLine upLine = new HorizontalLine(0, 119, 0, '*');
-            //HorizontalLine downLine = new HorizontalLine(0, 119, 28, '*');
-            //VerticalLine leftLine = new VerticalLine(0, 0, 28, '*');
-            //VerticalLine rightLine = new VerticalLine(119, 0, 28, '*');
-            //upLine.LineDraw();
-            //downLine.LineDraw();
-            //leftLine.LineDraw();
-            //rightLine.LineDraw();
-
-            Walls walls = new Walls(119, 28);
+            Walls walls = new Walls(100, 28);
             walls.Draw();
 
-            Point p = new Point(4,5,'*');
+            // Отрисовка точек
+            Point p = new Point(4,5,'+');
             Snake snake = new Snake(p, 4, Direction.RIGHT);
-            snake.LineDraw();
+            snake.Draw();
 
-            FoodCreator foodCreator = new FoodCreator(120, 30, '#');
+            FoodCreator foodCreator = new FoodCreator(100, 28, '$');
             Point food = foodCreator.CreateFood();
             food.Draw();
 
+            int eatscore = 0;
+
             while (true)
             {
-                if (walls.IsHit(snake) || snake.IsHitTail())
+                if (walls.IsHit(snake)) //|| snake.IsHitTail())
                 {
+                    WriteGameOver();
                     break;
                 }
                 if (snake.Eat(food))
                 {
+                    eatscore += 10;
+                    Point eatscores = new Point(100, 2, eatscore.ToString());
+                    eatscores.Draw(eatscore.ToString());
                     food = foodCreator.CreateFood();
                     food.Draw();
                 }
@@ -51,14 +48,40 @@ namespace Snake
                     snake.Move();
                 }
 
+                Thread.Sleep(70);
+
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey();
                     snake.HandleKey(key.Key);
                 }
-                snake.Move();
-                Thread.Sleep(200);
             }
+
+            WriteGameOver();
+            Console.ReadLine();
+        }
+
+        static void WriteGameOver()
+        {
+            int xOffset = 35;
+            int yOffset = 10;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(xOffset, yOffset++);
+            WriteText(new string ('-', 30), xOffset, yOffset++);
+            WriteText("И Г Р А    З А В Е Р Ш Е Н А", xOffset + 1, yOffset++);
+            WriteText(new string('-', 30), xOffset, yOffset++);
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+            Console.WriteLine(" ");
+        }
+
+        static void WriteText(String text, int xOffset, int yOffset)
+        {
+            Console.SetCursorPosition(xOffset, yOffset);
+            Console.WriteLine(text);
         }
     }
 }

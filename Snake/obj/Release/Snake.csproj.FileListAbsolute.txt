@@ -1,0 +1,5 @@
+D:\C#\Snake\Snake\Snake\bin\Release\Snake.exe.config
+D:\C#\Snake\Snake\Snake\bin\Release\Snake.exe
+D:\C#\Snake\Snake\Snake\bin\Release\Snake.pdb
+D:\C#\Snake\Snake\Snake\obj\Release\Snake.exe
+D:\C#\Snake\Snake\Snake\obj\Release\Snake.pdb

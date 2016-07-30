@@ -15,10 +15,10 @@ namespace Snake
             wallList = new List<Figure>();
 
             //отрисовка рамочки
-            HorizontalLine upLine = new HorizontalLine(0, mapWidth - 2, 0, '*');
-            HorizontalLine downLine = new HorizontalLine(0, mapWidth - 2, mapHeight - 1, '*');
-            VerticalLine leftLine = new VerticalLine(0, 0, mapHeight - 1, '*');
-            VerticalLine rightLine = new VerticalLine(mapWidth - 2, 0, mapHeight - 1, '*');
+            HorizontalLine upLine = new HorizontalLine(0, mapWidth - 2, 0, '.');
+            HorizontalLine downLine = new HorizontalLine(0, mapWidth - 2, mapHeight - 1, '.');
+            VerticalLine leftLine = new VerticalLine(0, 0, mapHeight - 1, '.');
+            VerticalLine rightLine = new VerticalLine(mapWidth - 2, 0, mapHeight - 1, '.');
 
             wallList.Add(upLine);
             wallList.Add(downLine);
@@ -26,7 +26,7 @@ namespace Snake
             wallList.Add(rightLine);
         }
 
-        internal bool IsHit (Figure figure)
+        internal bool IsHit(Figure figure)
         {
             foreach (var wall in wallList)
             {
@@ -34,15 +34,15 @@ namespace Snake
                 {
                     return true;
                 }
-                return false;
             }
+            return false;
         }
 
         public void Draw()
         {
             foreach (var wall in wallList)
             {
-                wall.LineDraw();
+                wall.Draw();
             }
         }
     }

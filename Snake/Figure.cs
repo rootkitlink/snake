@@ -10,7 +10,7 @@ namespace Snake
     {
         protected List<Point> pList;
 
-        public void LineDraw()
+        public void Draw()
         {
             foreach (Point p in pList)
             {
@@ -28,7 +28,17 @@ namespace Snake
             return false;
         }
 
-        private bool IsHitTail (Point point)
+        //private bool IsHitTail (Point point)
+        //{
+        //    foreach (var p in pList)
+        //    {
+        //        if (p.IsHit(point))
+        //            return true;
+        //    }
+        //    return false;
+        //}
+
+        private bool IsHit(Point point)
         {
             foreach (var p in pList)
             {

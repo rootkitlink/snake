@@ -25,6 +25,7 @@ namespace Snake
 
         internal void Move()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Point tail = pList.First();
             pList.Remove(tail);
             Point head = GetNextPoint();

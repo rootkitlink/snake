@@ -11,17 +11,25 @@ namespace Snake
         public int x;
         public int y;
         public char sym;
+        public string eatscore;
 
         public Point()
         {
 
         }
 
-        public Point (int _x, int _y, char _sym)
+        public Point(int x, int y, string eatscore)
         {
-            x = _x;
-            y = _y;
-            sym = _sym;
+            this.x = x;
+            this.y = y;
+            this.eatscore = eatscore;
+        }
+
+        public Point (int x, int y, char sym)
+        {
+            this.x = x;
+            this.y = y;
+            this.sym = sym;
         }
 
         public Point (Point p)
@@ -55,6 +63,13 @@ namespace Snake
         {
             Console.SetCursorPosition(x, y);
             Console.Write(sym);
+        }
+
+        public void Draw(String eatscore)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(x, y);
+            Console.Write("Счет: " + eatscore + "$");
         }
 
         public void Clear()
